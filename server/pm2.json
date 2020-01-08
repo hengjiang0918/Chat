@@ -1,0 +1,29 @@
+[
+  {
+    "name": "blog",
+    // "watch": false,
+    "instances": 0, //启动的进程数量,设置为0的话按照当前CPU内核数量
+    "script": "server/start.js",
+    "error_file": "server/logs/app-err.log",
+    "out_file": "server/logs/app-out.log",
+    "pid_file": "server/logs/child.pid", //进程
+    "env_dev": {
+      "NODE_ENV": "development",
+      // "NODE_PORT": 7800
+    },
+    "env_production": {
+      "NODE_ENV": "production"
+    },
+    "watch": [ // 监控变化的目录，一旦变化，自动重启
+      "src",
+      "dist"
+    ],
+    "ignore_watch": [ // 从监控目录中排除
+      "node_modules",
+      "logs/"
+    ],
+    "max_memory_restart": "1024M", //超过使用该内存上限后自动重启
+    "exec_mode": "cluster", //集群模式
+    "autorestart": true //自动重启
+  }
+]
